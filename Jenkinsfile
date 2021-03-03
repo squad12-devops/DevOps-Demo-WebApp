@@ -21,6 +21,12 @@ stage('Build') {
 	       jiraComment body: 'Hey there, I am Jenkins and I am talking to JIRA now.', issueKey: 'CS-8'
        }
    }
+post {
+    success {
+      mail to: brewdevops@gamial.com, subject: ‘The Pipeline failed :(‘
+    }
+  }
+
 }
 
 	}
