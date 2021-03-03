@@ -23,7 +23,7 @@ stage('Build') {
    }
 post {
     success {
-      mail to: brewdevops@gmail.com, subject: ‘The Pipeline failed :(‘
+      mail to: brewdevops@outlook.com, subject: ‘The Pipeline failed :(‘
     }
   }
 
