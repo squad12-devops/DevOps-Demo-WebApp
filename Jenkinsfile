@@ -10,24 +10,16 @@ pipeline {
 				git credentialsId: 'Github', url: 'https://github.com/squad12-devops/DevOps-Demo-WebApp.git'
         		}
 		}
-		stage("Static Code Analysis"){
-      			steps{
-				echo("validating project")
-				sh "mvn validate"
-        		}
-		}
-    		stage("Compile"){
-      			steps{
-				echo("compiling project")
-				sh "mvn compile"
-        		}
-		}
-    		stage("Build"){
-      			steps{
-				echo("build package")
-				sh "mvn package"
-        		}
-		}
-	}
+stage('Build') {
+   steps {
+       echo 'Building...'
+   }
+   post {
+       always {
+           jiraSendBuildInfo branch: '', site: '12squaddevops.atlassian.net'
+       }
+   }
+}
 
+	}
 }
