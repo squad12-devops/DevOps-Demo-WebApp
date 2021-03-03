@@ -13,6 +13,7 @@ pipeline {
 stage('Build') {
    steps {
        echo 'Building...'
+	   echo 'Still Building...'
    }
    post {
        always {
