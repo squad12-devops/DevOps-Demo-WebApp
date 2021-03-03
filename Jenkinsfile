@@ -20,10 +20,7 @@ stage('Build') {
 	       jiraSendBuildInfo branch: 'CS-7', site: '12squaddevops.atlassian.net'
 	       jiraComment body: 'Hey there, I am Jenkins and I am talking to JIRA now.', issueKey: 'CS-8'
        }
-	       failure  {
-      jiraComment body: 'Hey there, I am Jenkins and I am talking to JIRA now.', issueKey: 'CS-8'
-    }
-   }
+	         }
 
   }
 
