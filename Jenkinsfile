@@ -18,7 +18,7 @@ stage('Build') {
    post {
        always {
 	       jiraSendBuildInfo branch: 'CS-7', site: '12squaddevops.atlassian.net'
-	       jiraComment body: 'Hey there, I am Jenkins and I am talking to JIRA now.', issueKey: 'CS-7'
+	       jiraComment body: 'Hey there, I am Jenkins and I am talking to JIRA now.', issueKey: 'CS-8'
        }
    }
 }
