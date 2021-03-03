@@ -19,7 +19,6 @@ pipeline {
       steps {
         echo 'Building...'
         echo 'Still Building...'
-        jiraComment(issueKey: 'CS-8', body: 'This work is complete')
       }
     }
 
