@@ -17,7 +17,8 @@ stage('Build') {
    }
    post {
        always {
-           jiraSendBuildInfo site: '12squaddevops.atlassian.net'
+	       jiraComment body: 'Build to integrate JIRA is complete.', issueKey: 'CS-7'
+	       jiraSendBuildInfo site: '12squaddevops.atlassian.net'
        }
    }
 }
