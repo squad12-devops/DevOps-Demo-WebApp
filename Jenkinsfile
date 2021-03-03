@@ -22,8 +22,8 @@ stage('Build') {
        }
    }
 post {
-    success {
-      mail to: brewdevops@outlook.com, subject: ‘The Pipeline failed :(‘
+    failure  {
+      jiraComment body: 'Hey there, I am Jenkins and I am talking to JIRA now.', issueKey: 'CS-8'
     }
   }
 
