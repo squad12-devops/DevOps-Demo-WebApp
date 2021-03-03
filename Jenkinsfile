@@ -16,7 +16,7 @@ stage('Build') {
    }
    post {
        always {
-           jiraSendBuildInfo branch: '', site: '12squaddevops.atlassian.net'
+           jiraSendBuildInfo branch: 'CS-7CS-7', site: '12squaddevops.atlassian.net'
        }
    }
 }
