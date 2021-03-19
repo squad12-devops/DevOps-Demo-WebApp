@@ -18,7 +18,7 @@ body {
   background: #e9e9e9;
   color: #666666;
   font-family: 'RobotoDraft', 'Roboto', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
