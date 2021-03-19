@@ -34,7 +34,7 @@ pipeline {
            steps {
                sh 'mvn package -f pom.xml' 
 	       //sh 'mvn clean install -Dmaven.test.skip'  
-               deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '', url: 'http://54.157.172.2:8080')], contextPath: '/QAWebapp', onFailure: false, war: '**/*.war'
+               deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '', url: 'http://100.26.17.45:8080')], contextPath: '/QAWebapp', onFailure: false, war: '**/*.war'
                echo 'Notification send - Deploy to QA'
                slackSend channel: '#squad12', message: ' Deploy to QA successful'
                
@@ -93,35 +93,41 @@ pipeline {
            steps {
                sh 'mvn package -f pom.xml' 
 	       //sh 'mvn clean install -Dmaven.test.skip'		   
-               deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '', url: 'http://100.26.163.208:8080')], contextPath: '/ProdWebapp', onFailure: false, war: '**/*.war'
+               deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '', url: 'http://34.229.71.13:8080')], contextPath: '/ProdWebapp', onFailure: false, war: '**/*.war'
                echo 'Notification send - Deploy to PROD'
                slackSend channel: '#squad12', message: 'Deploy to PROD successful!'
              }
     }
-	  // Deepika Code start
+	  // Dockerize Code start
 	  
-	   /*stage('Docker containarize PROD app - Build and Tag') {
+	   /*	   stage('Docker containarize PROD app - Build and Tag') {
            steps {
-               sh 'docker build -t prodwebapp:latest -f /var/jenkins_home/workspace/DockerizeApp_8_main'
-	       sh  'docker tag prodwebapp brewdevops/prodwebapp:$BUILD_NUMBER'
+              sh 'docker build -t prodwebapp:latest .'
+			  sh  'docker tag prodwebapp deepikaprasadbalaji/prodwebapp:$BUILD_NUMBER'
+			 
                echo 'Docker container successful'
-               slackSend channel: '#squad12', message: 'New PROD container build and tag!'
-             }
-         }
+               slackSend channel: '#squad12', message: 'Final New PROD container build and tag!'
+               
+            }
+        }
 	  
 	    stage('PROD - Publish image to Docker Hub') {
           
             steps {
-        		withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-         		 sh  'docker push brewdevops/prodwebapp:$BUILD_NUMBER'
-				echo 'Docker container pushed to DockerHub successful'
-               			slackSend channel: '#squad12', message: 'New PROD container available in DockerHub!'
-        	}
+			
+				script {
+					withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
+						sh  'docker push deepikaprasadbalaji/prodwebapp:$BUILD_NUMBER'
+						echo 'Docker container pushed to DockerHub successful'
+						slackSend channel: '#squad12', message: 'Final New PROD container available in DockerHub!'
+					}
                   
-          	}
-        }*/
+				}
+			}
 	  
-	  // Deepika Code End
+		}*/
+	  
+	  // Dockerize Code End
     
     stage('Perform Sanity test in PROD') {
         steps{
