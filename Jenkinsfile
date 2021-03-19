@@ -43,6 +43,7 @@ pipeline {
             post {
                     always {
                          jiraSendBuildInfo site: '12squaddevops.atlassian.net',  branch: 'master'
+			 jiraComment body: 'Build is complete', issueKey: 'CS-7'
                     }
             }
     }
